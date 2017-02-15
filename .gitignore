@@ -1,0 +1,6 @@
+# ignore program output
+*.csv
+# ignore object directory
+obj/
+# ignore exeutable
+*.exe

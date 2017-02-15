@@ -1,0 +1,81 @@
+                         Exciton1D_TD
+                         ------------
+
+What is it?
+-----------
+
+This program calculates the trajectory of an exciton in a 1D molecular
+crystal system where both Coulombic and charge-transfer excitations 
+are present. The excitons interact via three terms. The nearest neighbor
+Coulombic coupling, JCoul, the nearest neighbor electron
+transfer integral te, and the nearest neighbor hole transfer integral
+th. For more information, see the following paper and references
+therein:
+
+    Hestand, N.J. et. al. Phys. Rev. B. 2015
+    
+Briefly, the above paper shows that there is an interference
+between the Coulombic and charge-transfer couplings which
+can dramatically affect the exciton mobility. In the limit 
+of large |ES1 - ECT|, the charge-transfer interactions (te and th)
+can be treated together as an effective Frenkel exciton coupling, 
+given by
+
+    JCT = -2 * te * th / ( ECT-ES1 )
+
+In this limit the total exciton coupling can be approximated by JCT + JCoul.
+Hence, when JCT = -JCoul (as is the case in the example_HJ.inp file)
+the total exciton copuling vanishes, leading to a reduction in 
+the exciton mobility. However, if JCT = JCoul (as is the case in 
+the example_HH.inp file - note that only the sign of th has been changed
+from example_HJ.inp) the couplings reinforce one another leading
+to enhanced exciton mobility. Such changes can occur in real systems
+upon slight (1 Angstrom) changes in the molecular packing structure.
+
+Note that in the current program, vibrational excitations have
+been neglected for simplicity. Furthermore, only nearest neighbor 
+charge-transfer interactions have been included. If you use the results from 
+this program in a publication, please cite the above paper.
+This program is distributed under the MIT liscense.
+
+How do I use it?
+----------------
+
+The program can be compiled using make and the supplied makefile.
+You may need to edit the makefile so that it is appropriate for
+your system. 
+
+Once compiled, the program can be run from the command line. An
+input file containing simulation parameters should be provided as
+the first argument. Two example input files with parameter explinations
+are provided in example_HH.inp and example_HJ.inp. For example, 
+run the program with 
+
+./exciton1D_td ./example_HH.inp
+
+After running the program, two csv files are produced, one contains
+the simulation parameters and has the extension _para.csv while the
+other contains the exciton populations as a function of time. The latter
+has the extension _traj.csv. A python script called showtraj.py is also
+provided to view the program output. To run the script enter
+
+python ./showtraj.py ./task_title [./task_title2]
+
+Where task_title is the name given to the simulation. Optionally
+you can include a second trajectory (task_title2) if you would like
+to compare two trajectories. For example, after running the program
+using the supplied example_HH.inp and example_HJ.inp file, run 
+python ./showtraj.py ./example_HH ./example_HJ to view the two trajectories
+simultaniously. This will show the effect noted in 
+
+    Hestand, N.J. et. al. Phys. Rev. B. 2015
+
+What libraries are required?
+----------------------------
+
+To build the exciton1D program:
+LAPACK
+
+If you want to use the showspec.py script:
+numpy
+matplotlib

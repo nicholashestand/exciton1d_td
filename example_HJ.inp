@@ -1,0 +1,31 @@
+######################################################################
+#                 Example input file for exciton1D                   #
+######################################################################
+#
+#--------------------------------------------------------------------#
+#Simulation Title
+#--------------------------------------------------------------------#
+task_title example_HJ
+#--------------------------------------------------------------------#
+#Number of molecules
+#--------------------------------------------------------------------#
+nmol           10
+#--------------------------------------------------------------------#
+#Basis set parameters
+#--------------------------------------------------------------------#
+fe_state      true     #include one particle states (t/f)
+ct_state       true     #include charge-transfer states (t/f)
+#--------------------------------------------------------------------#
+#Simulation Parameters (in wavenumbers)
+#--------------------------------------------------------------------#
+JCoul           100.d0  #nearest neighbor Coulomb coupling
+ES1               0.d0  #monomer Frenkel exciton energy
+te              500.d0  #nearest-neighbor electron transfer integral
+th              500.d0  #nearest-neighbor hole transfer integral
+ECT            5000.d0  #energy of nearest-neighbor charge-transfer state
+#--------------------------------------------------------------------#
+#Simulation parameters
+tmax            500     #number of time steps
+t0_state          1     #molecule of initial frenkel exciton
+tstep          1.d-15   #step size in seconds
+# END OF FILE
